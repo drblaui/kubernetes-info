@@ -7,3 +7,4 @@ This is a very short and very incomplete overview of Kubernetes intended to be u
 - [Kubernetes Commands Cheatsheet](./cheatsheet_commands.md) \[[PDF Version](/pdfs/cheatsheet_commands.pdf)]
 - [YAMLs](./yamls.md)
   - [ConfigMap](./yamls.md#configmap)
+  - [Secrets](./yamls.md#secrets)
