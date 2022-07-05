@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: example-pod
+#Pod specifications
+spec:
+  # Multiple containers can be used in a pod
+  containers:
+  # A container that would mount the config map example
+  - name: config-map-volume-container
+    image: nginx
+    # Normal volume mounting like docker
+    # This is now specific for config maps
+    volumeMounts:
+      - name: config
+        mountPath: "/etc/test/foo"
+        # VERY important for ConfigMap Volumes
+        readOnly: true
+  volumes: 
+    - name: config
+      configMap:
+        name: my-config
