@@ -9,6 +9,6 @@ See [`config_map_example.yaml`](examples/config_map_example.yaml) for example st
 Using ConfigMaps in pods can be done in 4 ways:
 
 - Inside a container command and args
-- Environment variables for a container (see `pod_example.yaml` (TODO: Link and Line))
-- mounted as a read-only volume in a container (see `pod_example.yaml` (TODO: Link and Line))
+- Environment variables for a container (see [`pod_example.yaml`](examples/pod_example.yaml#L12-17))
+- mounted as a read-only volume in a container (see [`pod_example.yaml`](examples/pod_example.yaml#L18-L31))
 - Code inside a Pod that reads the ConfigMap via Kubernetes API
