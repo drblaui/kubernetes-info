@@ -6,6 +6,15 @@ metadata:
 spec:
   # Multiple containers can be used in a pod
   containers:
+  # Container that has a configmap as environment variables
+  - name: config-env-container
+    image: redis
+    env:
+      - name: PROJECT_NAME # Environment variable name
+        valueFrom:
+          configMapKeyRef:
+            name: my-config # ConfigMap name
+            key: project-name # Key in ConfigMap
   # A container that would mount the config map example
   - name: config-map-volume-container
     image: nginx
