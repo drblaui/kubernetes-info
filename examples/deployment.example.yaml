@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-example
+  #Labels can be used to group objects in a namespace
+  labels:
+    app: example
+spec:
+  replicas: 3
+  # Defines how a deployment finds Pods to manage
+  selector:
+    matchLabels:
+      app: example
+  # Templating the actual pod(s)
+  template:
+    metadata:
+      labels:
+        app: example
+    spec:
+      containers:
+        - name: webserver
+          image: nginx
+          ports:
+            - containerPort: 8080

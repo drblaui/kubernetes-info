@@ -71,3 +71,23 @@ Pods aren't there forever (unless you run a container that's supposed to never s
 ## Nodes
 
 Nodes are physical or virtual machines that hold pods, the `kubelet` - which is responsible for running containers - and a container runtime (e.g. Docker). Normally a kubelet on the node goes through the trouble of registering said node to the control plane, however you could also manually add nodes, but I wouldn't reccomend it.
+
+## Deployment
+
+Deployments can be seen as a form of state management for pods. A Deployment holds a specific state you want you pod to be in, but a deployment can also change states (i.e Updating, Rerolling, etc) of your pod.
+
+Deployments can create pod **replicas**, which basically just means running multiple "clone" instances of a specific pod, that all receive the same IP address and act the same. Replicas are very useful for load balancing or even updating your application.
+
+To create a deployment simply use `kubectl apply -f <file>`. You can either use an actual file on the machine or provide a link to the location of the file (e.g. a GitHub file).
+
+### Scaling
+
+Scaling is the process of creating replicas by hand to either prepare your app for an update or just simply to have load balancing. You can specify the exact scale you want to by using `kubectl scale deployment/<name> --replicas=<number>` or you can let kubernetes handle the up- and downscaling by using `kubectl autoscale deployment/<name> --min=<number> --max=<number> --cpu-percent=<number>` (but you need to enable [horizontal pod autoscaling](https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/) first).
+
+### Updating
+
+The best part about kubernetes is that you can update your software with virtually no downtime (if you have replicas that is). Before updating it is recommended to scale your deployment up to at least 2 replicas. Changing anythin in the [spec.template](./examples/deployment.example.yaml#L15-L24) part will automatically trigger a rollout, however you can also update deployments by hand with `kubectl set image deployment/<name> <app-label-name>=<new-image>`. This will sequentially update pods and replicas while making sure at least one pod with either the new or the old version is available and ready. You can also edit the spec file directly using `kubectl edit deployment/<name>`.
+
+### Rollback
+
+Sometimes updating was a mistake. Either you have a faulty image or just made a typo. You can rollback to a stable version very easily by using `kubectl rollout undo deployment/<name>`. However if you want to go pack several steps, you can utilize the rollout history. Using `kubectl rollout history deployment/<name>` you see all revisions you did to your deployment and can go back to any revision by simply appending `--to-revision=<revision>` to the undo command.
