@@ -8,3 +8,6 @@ This is a very short and very incomplete overview of Kubernetes intended to be u
 - [YAMLs](./yamls.md)
   - [ConfigMap](./yamls.md#configmap)
   - [Secrets](./yamls.md#secrets)
+  - [Pods](./yamls.md#pods)
+  - [Nodes](./yamls.md#nodes)
+  - [Deployment](./yamls.md#deployment)
