@@ -54,3 +54,16 @@ To **edit** a secret simply use `kubectl edit secret <secretname>`. This will op
 Using Secrets as environment variables or volumes is the same way as explained with ConfigMaps.
 
 > Tip: Secrets can also be marked as immutable!
+
+## Pods
+
+Pods are the smallest component of any kubernetes cluster. They hold at least one container, but can also hold multiple containers if you feel the need to group them. Volumes mounted for the containers are also contained in a pod. Each pod has an own IP address under which you can reach the containers/deployments/services/etc belonging to that pod. Pods to support different container runtimes, however docker is mostly used. You can think of a pod as a **shared memory system** since all containers in a pod share namespaces and filesystem(s).
+
+You can configure Containers in a Pod like you know them from Docker or any other container runtime. For some examples see [pod.example.yaml](examples/pod.example.yaml).
+
+If you want to *create* a Pod from a `.yaml` file simply use the `kubectl apply -f <file>` command. *Ideally* you provide an internet link to a yaml file (thats hosted on GitHub for example), but you can also use a local file, just make sure you aren't in a running pod first.
+
+<!-- TODO: Links-->
+While you can create a Pod using a config file, it's rather unusual to do so. Normally Pods are created by a Deployment or a Job.
+
+Pods aren't there forever (unless you run a container that's supposed to never stop). A Pod runs it's lifecycle until it's finished executing.
