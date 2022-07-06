@@ -67,3 +67,7 @@ If you want to *create* a Pod from a `.yaml` file simply use the `kubectl apply 
 While you can create a Pod using a config file, it's rather unusual to do so. Normally Pods are created by a Deployment or a Job.
 
 Pods aren't there forever (unless you run a container that's supposed to never stop). A Pod runs it's lifecycle until it's finished executing.
+
+## Nodes
+
+Nodes are physical or virtual machines that hold pods, the `kubelet` - which is responsible for running containers - and a container runtime (e.g. Docker). Normally a kubelet on the node goes through the trouble of registering said node to the control plane, however you could also manually add nodes, but I wouldn't reccomend it.
