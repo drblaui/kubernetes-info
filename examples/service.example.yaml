@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-example
+spec:
+  selector:
+    # Selects all deployments labeled example
+    app: example
+  ports:
+    - name: http
+      protocol: TCP
+      # Outside Port
+      port: 80
+      # Port of the pod we want to access with the serice
+      targetPort: 9376
+    - name: https
+      protocol: TCP
+      port: 443
+      targetPort: 9443

@@ -64,7 +64,7 @@ You can configure Containers in a Pod like you know them from Docker or any othe
 If you want to *create* a Pod from a `.yaml` file simply use the `kubectl apply -f <file>` command. *Ideally* you provide an internet link to a yaml file (thats hosted on GitHub for example), but you can also use a local file, just make sure you aren't in a running pod first.
 
 <!-- TODO: Links-->
-While you can create a Pod using a config file, it's rather unusual to do so. Normally Pods are created by a Deployment or a Job.
+While you can create a Pod using a config file, it's rather unusual to do so. Normally Pods are created by a [Deployment](#deployment) or a Job.
 
 Pods aren't there forever (unless you run a container that's supposed to never stop). A Pod runs it's lifecycle until it's finished executing.
 
@@ -91,3 +91,23 @@ The best part about kubernetes is that you can update your software with virtual
 ### Rollback
 
 Sometimes updating was a mistake. Either you have a faulty image or just made a typo. You can rollback to a stable version very easily by using `kubectl rollout undo deployment/<name>`. However if you want to go pack several steps, you can utilize the rollout history. Using `kubectl rollout history deployment/<name>` you see all revisions you did to your deployment and can go back to any revision by simply appending `--to-revision=<revision>` to the undo command.
+
+## Services
+
+Services are a nice way to expose containers or applications to the outside (or inside) world. Services by default are REST Objects.
+For an example on how to define a service, you can look into [service.example.yaml](./examples/service.example.yaml). By default you don't have to necessarily define the [`targetPort`](./examples/service.example.yaml#L15) if your targetPort is the same as the incoming port. You can also define [multiple ports](./examples/service.example.yaml#L9-L19) if you want your service to support HTTP and HTTPs for example. 
+
+### Exposing
+
+Most commonly you want to expose some of your services so other pods or even users can interact with them. Kubernetes provides 4 different types of exposed services:
+
+- ClusterIP: The most basic exposing. This will expose the service only for other Objects in the Cluster, anything outside the Cluster wont be able to access the server, since the service runs on an cluster-internal IP. This is the **default**.
+- NodePort: Superset of ClusterIP. Exposes the Service publicly and thus makes the Service reachable with `<NodeIP>:<NodePort>`. Automatically routes all incoming requests from the outside to the internal ClusterIP Service of that node
+- LoadBalancer: Superset of NodePort. Exposes the Service the same way as the NodePort type, but will also evenly spread out incoming traffic onto replicas if they exist. Helps with maintaining a fast service.
+- ExternalName: Superset of LoadBalancer. Does everything the LoadBalancer type does, but also Maps the Service to CNAME record. This will make your service reachable by normal web domains(`<subdomain>.<domain>.<tld>`). You can specify the external name by appending this to your service configuration:
+
+```yaml
+  spec:
+      type: ExternalName
+      externalName: <subdomain>.<domain>.<tld></tld>
+```
