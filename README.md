@@ -11,3 +11,6 @@ This is a very short and very incomplete overview of Kubernetes intended to be u
   - [Pods](./yamls.md#pods)
   - [Nodes](./yamls.md#nodes)
   - [Deployment](./yamls.md#deployment)
+  - [Service](./yamls.md#service)
+  - [Jobs](./yamls.md#jobs)
+    - [CronJobs](./yamls.md#cronjobs)

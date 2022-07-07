@@ -63,8 +63,7 @@ You can configure Containers in a Pod like you know them from Docker or any othe
 
 If you want to *create* a Pod from a `.yaml` file simply use the `kubectl apply -f <file>` command. *Ideally* you provide an internet link to a yaml file (thats hosted on GitHub for example), but you can also use a local file, just make sure you aren't in a running pod first.
 
-<!-- TODO: Links-->
-While you can create a Pod using a config file, it's rather unusual to do so. Normally Pods are created by a [Deployment](#deployment) or a Job.
+While you can create a Pod using a config file, it's rather unusual to do so. Normally Pods are created by a [Deployment](#deployment) or a [Job](#jobs).
 
 Pods aren't there forever (unless you run a container that's supposed to never stop). A Pod runs it's lifecycle until it's finished executing.
 
@@ -113,8 +112,8 @@ Most commonly you want to expose some of your services so other pods or even use
 ```
 
 ## Jobs
-<!-- TODO: CronJob link-->
-Jobs allow you to easily run "one off" executions. It creates Pods for you and will keep on doing so until those pods have successfully terminated a specified amount of tries. You can also schedule Jobs using CronJobs.
+
+Jobs allow you to easily run "one off" executions. It creates Pods for you and will keep on doing so until those pods have successfully terminated a specified amount of tries. You can also schedule Jobs using [CronJobs](#cronjobs).
 
 You can **run** jobs by creating a [job config](./examples/job.example.yaml) and using `kubectl apply -f <file>`
 
