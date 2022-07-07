@@ -95,7 +95,7 @@ Sometimes updating was a mistake. Either you have a faulty image or just made a 
 ## Services
 
 Services are a nice way to expose containers or applications to the outside (or inside) world. Services by default are REST Objects.
-For an example on how to define a service, you can look into [service.example.yaml](./examples/service.example.yaml). By default you don't have to necessarily define the [`targetPort`](./examples/service.example.yaml#L15) if your targetPort is the same as the incoming port. You can also define [multiple ports](./examples/service.example.yaml#L9-L19) if you want your service to support HTTP and HTTPs for example. 
+For an example on how to define a service, you can look into [service.example.yaml](./examples/service.example.yaml). By default you don't have to necessarily define the [`targetPort`](./examples/service.example.yaml#L15) if your targetPort is the same as the incoming port. You can also define [multiple ports](./examples/service.example.yaml#L9-L19) if you want your service to support HTTP and HTTPs for example.
 
 ### Exposing
 
@@ -111,3 +111,17 @@ Most commonly you want to expose some of your services so other pods or even use
       type: ExternalName
       externalName: <subdomain>.<domain>.<tld></tld>
 ```
+
+## Jobs
+<!-- TODO: CronJob link-->
+Jobs allow you to easily run "one off" executions. It creates Pods for you and will keep on doing so until those pods have successfully terminated a specified amount of tries. You can also schedule Jobs using CronJobs.
+
+You can **run** jobs by creating a [job config](./examples/job.example.yaml) and using `kubectl apply -f <file>`
+
+### CronJobs
+
+Kubernetes CronJobs are the same as "normal" ConJobs, they allow you to specify a pattern in which jobs should be started using a schedule.
+
+For an example CronJob, see [cronjob.example.yaml](./examples/cronjob.example.yaml).
+
+To **create** a CronJob, simply use `kubectl create -f <file>`.

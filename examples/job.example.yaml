@@ -1,0 +1,14 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: example-job
+spec:
+  template:
+    spec:
+      containers:
+        - name: example
+          image: alpine:3.14
+          command: ["echo", "test"]
+      restartPolicy: OnFailure # Can also be Never
+  # Number of tries, before job counts as failed
+  backoffLimit: 4 

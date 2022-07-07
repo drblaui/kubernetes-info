@@ -1,0 +1,17 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: example-cron
+spec:
+  # Normal cron job syntax with minute, hour, day of month, month, day of the week in that order
+  schedule: "* * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: hello
+              image: busybox:1.28
+              imagePullPolicy: IfNotPresent
+              command: ["/bin/sh", "-c", "echo hello world"]
+          restartPolicy: OnFailure
