@@ -18,4 +18,6 @@ This is a very short and very incomplete overview of Kubernetes intended to be u
 
 ### Additional Info
 
-- Doing things with a CLI is nice, but can also be overbearing and it doesn't provide a nice overview. So Kubernetes has the possibility to provide a [Web Interace](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/). It's quite nice
+- Doing things with a CLI is nice, but can also be overbearing and it doesn't provide a nice overview. So Kubernetes has the possibility to provide a [Web Interace](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/). It's quite nice and can basically do everything explained in [Components and Objects](./components.md) without having to memorize commandline commands.
+
+- edX has a very nice [Kubernetes Course](https://www.edx.org/course/introduction-to-kubernetes) held by professionals, which is completely free, if you don't want to be granted a certificate at the end.
