@@ -1,4 +1,4 @@
-# Kubernetes YAMLs
+# Components and Objects
 
 Basic explanation how to create Config Files for Kubernetes and how they can interact with eachother.
 
@@ -124,3 +124,7 @@ Kubernetes CronJobs are the same as "normal" ConJobs, they allow you to specify 
 For an example CronJob, see [cronjob.example.yaml](./examples/cronjob.example.yaml).
 
 To **create** a CronJob, simply use `kubectl create -f <file>`.
+
+## Control Plane
+
+The control plane is the most minimal thing thats running on your cluster. If no Pods, deployments, services, Nodes, etc are running, the Control Plane will still be there. It's responsible for Cluster decisions like scheduling, how to start new nodes, etc and it also responds and detects any event in the cluster, like a pod starting, replicas being created, etc.

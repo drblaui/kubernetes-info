@@ -5,7 +5,7 @@ This is a very short and very incomplete overview of Kubernetes intended to be u
 ## Table of Contents
 
 - [Kubernetes Commands Cheatsheet](./cheatsheet_commands.md) \[[PDF Version](/pdfs/cheatsheet_commands.pdf)]
-- [YAMLs](./yamls.md)
+- [Components and Objects](./components.md.md)
   - [ConfigMap](./yamls.md#configmap)
   - [Secrets](./yamls.md#secrets)
   - [Pods](./yamls.md#pods)
@@ -14,3 +14,8 @@ This is a very short and very incomplete overview of Kubernetes intended to be u
   - [Service](./yamls.md#service)
   - [Jobs](./yamls.md#jobs)
     - [CronJobs](./yamls.md#cronjobs)
+  - [Control Plane](./yamls.md#control-plane)
+
+### Additional Info
+
+- Doing things with a CLI is nice, but can also be overbearing and it doesn't provide a nice overview. So Kubernetes has the possibility to provide a [Web Interace](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/). It's quite nice
